@@ -67,7 +67,6 @@ public class Sorts{
   //---------------------------------------------------------------------------
 
   private static boolean bubbleSwap(int[] data, int index1, int index2){
-    //return true and swaps if the index1 is greater than index2 of data
     if (data[index1] > data[index2]){
       int placehold = data[index1];
       data[index1] = data[index2];
@@ -77,24 +76,25 @@ public class Sorts{
     return false;
   }
 
-  private static boolean sorted(int[] data){
-    for (int i = 0 ; i < data.length - 1; i++){
-      if (data[i] > data[i+1]){
-        return false;
-      }
-    }
-    return true;
-  }
-
   public static void bubbleSort(int[] data){
-    while(!sorted(data)){
-      for (int i = 0 ; i < data.length - 1 ; i++){
-        if (data[i] > data[i+1]){
-          bubbleSwap(data, i, i+1);
+    //keep track of up to which point has it been sorted
+    int sortMark = data.length - 1;
+
+    //while i havent sorted the enitre array
+    while (sortMark > 0){
+
+      //loop through the array and swap numbers along the way
+      for (int i = 0 ; i < sortMark ; i++){
+        bubbleSwap(data, i, i+1);
+
+        //i've reached the end of the array and moved the biggest number to the
+        //end so now the sorted array is closer
+        if (i + 1 == sortMark){
+          sortMark--;
         }
+
       }
     }
-
   }
 
 }
