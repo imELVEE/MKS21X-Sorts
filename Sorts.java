@@ -37,24 +37,32 @@ public class Sorts{
 
   public static void selectionSort(int[] ary){
     //hold the the location of the smallest
-    int whereSmall = 0;
+    int whereSmall;
+    int smallest;
 
-    for (int counter = 0 ; counter < ary.length ; counter++){
-      int smallest = ary[counter];
+    //outer loop for marking how much of the array has been sorted
+    for (int sortMark = 0 ; sortMark < ary.length ; sortMark++){
+      //holder values
+      smallest = ary[sortMark];
+      whereSmall = sortMark;
 
-      //record the smallest and where the smallest is
-      for (int i = counter ; i < ary.length ; i++){
+      //inner loop for finding the smallest
+      for (int i = sortMark ; i < ary.length ; i++){
+        //find the smallest from the unsorted pile
         if (ary[i] < smallest){
-          whereSmall = i;
           smallest = ary[i];
+          whereSmall = i;
         }
       }
 
-      ary[whereSmall] = ary[counter];
-      ary[counter] = smallest;
+      //swap the smallest and the first element of the unsorted
+      ary[whereSmall] = ary[sortMark];
+      ary[sortMark] = smallest;
     }
 
-  }
+
+    }
+
 
   //---------------------------------------------------------------------------
 
