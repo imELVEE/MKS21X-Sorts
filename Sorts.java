@@ -103,34 +103,19 @@ public class Sorts{
   //---------------------------------------------------------------------------
 
   public static void insertionSort(int[] data){
-    //boolean for if the number has found its place
-    boolean found = false;
-
     //outer loop loops through all the unsorted numbers
     //TLDR; selects the next unsorted number
     for (int i = 1 ; i < data.length ; i++){
-      int numToBeSorted = data[i];
+      int original = data[i];
+      int place = i;
 
       //finds the place the number belongs in and puts it there
-      for (int place = i - 1 ; place > -1 && !found ;){
-        if (numToBeSorted < data[place]){
-          data[i] = data[place];
-          data[place] = numToBeSorted;
-          place--;
-        }
-        else{
-          found = true;
-        }
-
-        String ans = "[";
-        for (int q = 0 ; q < data.length ; q++){
-          ans += data[q] + ", ";
-        }
-        ans = ans.substring(0,ans.length()-2) + "]";
-        System.out.println(ans);
-
+      for (int replace = i - 1 ; replace > -1 && original < data[replace] ; replace--){
+        data[replace+1] = data[replace];
+        place = replace;
       }
 
+      data[place] = original;
     }
   }
 
